@@ -2,7 +2,7 @@ import socketio
 import os
 
 sio = socketio.Client()
-sio.connect('http://localhost:5000')
+sio.connect('https://apago-la-compu.onrender.com')
 
 @sio.on('connect')
 def connect():

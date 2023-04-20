@@ -4,7 +4,7 @@ import keyboard
 press = False
 
 
-sio = socketio.Client()
+sio = socketio.Client('https://apago-la-compu.onrender.com')
 
 @sio.event
 def connect():
