@@ -17,6 +17,11 @@ io.on('connection', (socket) => {
         console.log('cliente desconectado')
     });
 
+    socket.on('cerrar secion', () => {
+        console.log('recibido cerrar secion')
+        io.emit('cerrar secion');
+    });
+
 });
 
 server.listen(+(process.env.PORT || "") || 5000, () => {
