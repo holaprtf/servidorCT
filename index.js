@@ -13,13 +13,13 @@ io.on('connection', (socket) => {
         io.emit('apagar compu');
     });
     
-    socket.on('disconect', () => {
+    socket.on('disconnect', () => {
         console.log('cliente desconectado')
     });
 
-    socket.on('cerrar secion', () => {
-        console.log('recibido cerrar secion')
-        io.emit('cerrar secion');
+    socket.on('cerrar sesion', () => {
+        console.log('recibido cerrar sesion')
+        io.emit('cerrar sesion');
     });
 
 });
