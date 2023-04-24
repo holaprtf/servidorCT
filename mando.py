@@ -65,6 +65,4 @@ while True:
     if press1 == True and not keyboard.is_pressed('c'):
         press1 = False 
 
-    if keyboard.is_pressed("x"):
-        moverMouse()
 
