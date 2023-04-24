@@ -22,6 +22,11 @@ io.on('connection', (socket) => {
         io.emit('cerrar sesion');
     });
 
+    socket.on('moverMouse',({ diferenciaX: diferenciaX, diferenciaY: diferenciaY }) => {
+        io.emit("mover mouse", { diferenciaX: diferenciaX, diferenciaY: diferenciaY })
+        console.log(moverMouse)
+    });
+
 });
 
 server.listen(+(process.env.PORT || "") || 5000, () => {

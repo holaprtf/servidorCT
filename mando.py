@@ -43,7 +43,9 @@ def moverMouse():
     
         
 
-print('Press the "K" key to turn off computer B.')
+print('apretar la letra k para apagar compu')
+print("apretar la letra c para cerrar sesion")
+print("mantener x para mover mouse")
 while True:
     
     
@@ -61,6 +63,7 @@ while True:
         cerrar_sesion()
     
     if press1 == True and not keyboard.is_pressed('c'):
-        press1 = False
+        press1 = False 
 
-    moverMouse()
+    if keyboard.is_pressed("x"):
+        moverMouse()

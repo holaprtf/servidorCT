@@ -25,5 +25,7 @@ def cerrar_sesion():
     print('cerrando sesion')
     windll.user32.ExitWindowsEx(EWX_LOGOFF, 0)
 
+
+
 while True:
     pass
