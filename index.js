@@ -13,7 +13,7 @@ io.on('connection', (socket) => {
         io.emit('apagar compu');
     });
     
-    socket.on('disconect', () => {
+    socket.on('disconnect', () => {
         console.log('cliente desconectado')
     });
 

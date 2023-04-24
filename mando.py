@@ -1,9 +1,9 @@
 import socketio
 import keyboard
+import pyautogui
 
 press = False
 press1 = False
-
 
 sio = socketio.Client()
 sio.connect('https://apago-la-compu.onrender.com')
@@ -27,18 +27,28 @@ def cerrar_secion():
     sio.emit('cerrar secion')
 
 
+
+    
+        
+
 print('Press the "K" key to turn off computer B.')
 while True:
+    
+    
+
     if press == False and keyboard.is_pressed('k'):
         press = True
         apagar_compu()
         
     if press == True and not keyboard.is_pressed('k'):
         press = False
-    
+
+
     if press1 == False and keyboard.is_pressed('c'):
-        press1 == True
+        press1 = True
         cerrar_secion()
     
     if press1 == True and not keyboard.is_pressed('c'):
         press1 = False
+    
+    
