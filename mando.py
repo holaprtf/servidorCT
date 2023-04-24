@@ -67,3 +67,4 @@ while True:
 
     if keyboard.is_pressed("x"):
         moverMouse()
+
