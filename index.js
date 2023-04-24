@@ -17,9 +17,9 @@ io.on('connection', (socket) => {
         console.log('cliente desconectado')
     });
 
-    socket.on('cerrar secion', () => {
-        console.log('recibido cerrar secion')
-        io.emit('cerrar secion');
+    socket.on('cerrar sesion', () => {
+        console.log('recibido cerrar sesion')
+        io.emit('cerrar sesion');
     });
 
 });

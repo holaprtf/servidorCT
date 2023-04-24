@@ -20,9 +20,9 @@ def apagar_compu():
     print('apagando la compu')
     os.system('shutdown /s /t 1')
 
-@sio.on('cerrar secion')
-def cerrar_secion():
-    print('cerrando secion')
+@sio.on('cerrar sesion')
+def cerrar_sesion():
+    print('cerrando sesion')
     windll.user32.ExitWindowsEx(EWX_LOGOFF, 0)
 
 while True:
