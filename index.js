@@ -22,6 +22,16 @@ io.on('connection', (socket) => {
         io.emit('cerrar sesion');
     });
 
+    socket.on('click derecho', () => {
+        console.log('recibido click derecho')
+        io.emit('click derecho');
+    });
+
+    socket.on('click izquierdo', () => {
+        console.log('recibido click izquierdo')
+        io.emit('click izquierdo');
+    });
+
 });
 
 server.listen(+(process.env.PORT || "") || 5000, () => {

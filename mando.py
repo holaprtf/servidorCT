@@ -4,6 +4,8 @@ import pyautogui
 
 press = False
 press1 = False
+click1 = False
+click2 = False
 mouseX, mouseY = pyautogui.position()
 
 sio = socketio.Client()
@@ -26,6 +28,18 @@ def apagar_compu():
 def cerrar_sesion():
     print('cerrando sesion de computadora')
     sio.emit('cerrar sesion')
+
+
+@sio.event()
+def click_izquierdo():
+    sio.emit('click izquierdo')
+
+
+@sio.event()
+def click_derecho():
+    sio.emit('click derecho')
+
+
 
 def moverMouse():
     newMouseX, newMouseY = pyautogui.position()
@@ -59,10 +73,28 @@ while True:
 
 
     if press1 == False and keyboard.is_pressed('c'):
-        press1 == True
+        press1 = True
         cerrar_sesion()
     
     if press1 == True and not keyboard.is_pressed('c'):
         press1 = False 
+    
+    if click1 == False and keyboard.is_pressed('j'):
+        click1 = True
+        click_izquierdo()
+    
+    if click1 == True and not keyboard.is_pressed('j'):
+        click1 = False
+    
+    
+    if click2 == False and keyboard.is_pressed('l'):
+        click2 = True
+        click_derecho()
+    
+    if click2 == True and not keyboard.is_pressed('l'):
+        click2 = False
+
+
+
 
 

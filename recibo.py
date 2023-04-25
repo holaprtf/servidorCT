@@ -1,6 +1,7 @@
 import socketio
 import os
 from ctypes import windll
+import pyautogui
 
 EWX_LOGOFF = 0
 
@@ -24,6 +25,14 @@ def apagar_compu():
 def cerrar_sesion():
     print('cerrando sesion')
     windll.user32.ExitWindowsEx(EWX_LOGOFF, 0)
+
+@sio.on('click izquierdo')
+def click_izquierdo():
+    pyautogui.click(button='left')
+
+@sio.on('click derecho')
+def click_derecho():
+    pyautogui.click(button='right')
 
 
 
