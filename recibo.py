@@ -10,9 +10,7 @@ sio = socketio.Client()
 sio.connect('https://apago-la-compu.onrender.com')
 #sio.connect('http://localhost:5000')
 
-sio.on("reciboConexion")
-def solicitud_conexion():
-    sio.emit("conexionRecv")
+
 
 @sio.on('connect')
 def connect():

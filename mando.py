@@ -42,14 +42,6 @@ def click_izquierdo():
 def click_derecho():
     sio.emit('click derecho')
 
-@sio.event()
-def compu_conexionsol():
-    sio.emit("solicitoConexion")
-
-@sio.on("conexionRecibida")
-def conexion_recibida():
-    print("computadora conectada")
-    
 
 def moverMouse():
     width, height = pyautogui.size()
@@ -104,13 +96,6 @@ while True:
     
     if keyboard.is_pressed("ctrl") and count % 170 == 0:
         moverMouse()
-    
-    if press == False and keyboard.is_pressed('g'):
-        press2 = True
-        compu_conexionsol()
-        
-    if press == True and not keyboard.is_pressed('g'):
-        press2 = False
     
 
 
