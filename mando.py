@@ -4,12 +4,15 @@ import pyautogui
 
 press = False
 press1 = False
+press2 = False
 click1 = False
 click2 = False
-mouseX, mouseY = pyautogui.position()
 
 sio = socketio.Client()
 sio.connect('https://apago-la-compu.onrender.com')
+#sio.connect('http://localhost:5000')
+
+
 
 @sio.event
 def connect():
@@ -39,30 +42,34 @@ def click_izquierdo():
 def click_derecho():
     sio.emit('click derecho')
 
+@sio.event()
+def compu_conexionsol():
+    sio.emit("solicitoConexion")
 
+@sio.on("conexionRecibida")
+def conexion_recibida():
+    print("computadora conectada")
+    
 
 def moverMouse():
-    newMouseX, newMouseY = pyautogui.position()
-    diferenciaX = newMouseX - mouseX
-    diferenciaY = newMouseY - mouseY
-    mouseX = newMouseX
-    mouseY = newMouseY
+    width, height = pyautogui.size()
+    mouseX, mouseY = pyautogui.position()
+    porcentajeX = mouseX / width
+    porcentajeY = mouseY / height
 
-    if diferenciaX != 0 or diferenciaY != 0:
-      sio.emit('moverMouse', { diferenciaX: diferenciaX, diferenciaY: diferenciaY })
-
-
-
-
+    #print('Moviendo el mouse.')
+    sio.emit('moverMouse', { "porcentajeX": porcentajeX, "porcentajeY": porcentajeY })
     
         
 
 print('apretar la letra k para apagar compu')
 print("apretar la letra c para cerrar sesion")
-print("apretar j para click izquierdo")
-print('apretar l para click derecho')
+print("click derecho apretar l")
+print("click izquierdo apretar j")
+print("mantener ctrl para mover mouse")
+count = 0
 while True:
-    
+    count += 1
     
 
     if press == False and keyboard.is_pressed('k'):
@@ -94,6 +101,17 @@ while True:
     
     if click2 == True and not keyboard.is_pressed('l'):
         click2 = False
+    
+    if keyboard.is_pressed("ctrl") and count % 170 == 0:
+        moverMouse()
+    
+    if press == False and keyboard.is_pressed('g'):
+        press2 = True
+        compu_conexionsol()
+        
+    if press == True and not keyboard.is_pressed('g'):
+        press2 = False
+    
 
 
 

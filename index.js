@@ -8,6 +8,14 @@ const io = socketIO(server);
 io.on('connection', (socket) => {
     console.log('nuevo cliente conectado');
 
+    socket.on("conexionRecv", () => {
+        io.emit("conexionRecibida")
+    });
+
+    socket.on("solicitoConexion", () => {
+        io.emit("reciboConexion")
+    });
+
     socket.on('apagar compu', () => {
         console.log('recibido apagar compu');
         io.emit('apagar compu');
@@ -28,9 +36,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('click izquierdo', () => {
-        console.log('recibido click izquierdo')
+        console.log('recibido click izquierdo');
         io.emit('click izquierdo');
     });
+
+    socket.on("moverMouse", (params) => {
+        console.log("moviendo mouse", params);
+        io.emit("moverMouse", params);
+    })
 
 });
 

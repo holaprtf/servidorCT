@@ -4,9 +4,15 @@ from ctypes import windll
 import pyautogui
 
 EWX_LOGOFF = 0
+pyautogui.FAILSAFE = False
 
 sio = socketio.Client()
 sio.connect('https://apago-la-compu.onrender.com')
+#sio.connect('http://localhost:5000')
+
+sio.on("reciboConexion")
+def solicitud_conexion():
+    sio.emit("conexionRecv")
 
 @sio.on('connect')
 def connect():
@@ -34,6 +40,14 @@ def click_izquierdo():
 def click_derecho():
     pyautogui.click(button='right')
 
+@sio.on("moverMouse")
+def moverMouse(params):
+    width, height = pyautogui.size()
+    x = params["porcentajeX"] * width
+    y = params["porcentajeY"] * height
+    print("Moviendo mouse", x, y)
+    pyautogui.moveTo(x, y)
+    
 
 
 while True:
