@@ -6,10 +6,10 @@ press = False
 press1 = False
 click1 = False
 click2 = False
-mouseX, mouseY = pyautogui.position()
 
 sio = socketio.Client()
 sio.connect('https://apago-la-compu.onrender.com')
+#sio.connect('http://localhost:5000')
 
 @sio.event
 def connect():
@@ -42,26 +42,22 @@ def click_derecho():
 
 
 def moverMouse():
-    newMouseX, newMouseY = pyautogui.position()
-    diferenciaX = newMouseX - mouseX
-    diferenciaY = newMouseY - mouseY
-    mouseX = newMouseX
-    mouseY = newMouseY
+    width, height = pyautogui.size()
+    mouseX, mouseY = pyautogui.position()
+    porcentajeX = mouseX / width
+    porcentajeY = mouseY / height
 
-    if diferenciaX != 0 or diferenciaY != 0:
-      sio.emit('moverMouse', { diferenciaX: diferenciaX, diferenciaY: diferenciaY })
-
-
-
-
+    #print('Moviendo el mouse.')
+    sio.emit('moverMouse', { "porcentajeX": porcentajeX, "porcentajeY": porcentajeY })
     
         
 
 print('apretar la letra k para apagar compu')
 print("apretar la letra c para cerrar sesion")
 print("mantener x para mover mouse")
+count = 0
 while True:
-    
+    count += 1
     
 
     if press == False and keyboard.is_pressed('k'):
@@ -93,6 +89,9 @@ while True:
     
     if click2 == True and not keyboard.is_pressed('l'):
         click2 = False
+    
+    if keyboard.is_pressed("ctrl") and count % 170 == 0:
+        moverMouse()
 
 
 

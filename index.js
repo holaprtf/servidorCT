@@ -28,9 +28,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('click izquierdo', () => {
-        console.log('recibido click izquierdo')
+        console.log('recibido click izquierdo');
         io.emit('click izquierdo');
     });
+
+    socket.on("moverMouse", (params) => {
+        console.log("moviendo mouse", params);
+        io.emit("moverMouse", params);
+    })
 
 });
 
