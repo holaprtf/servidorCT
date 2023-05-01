@@ -59,7 +59,8 @@ def moverMouse():
 
 print('apretar la letra k para apagar compu')
 print("apretar la letra c para cerrar sesion")
-print("mantener x para mover mouse")
+print("apretar j para click izquierdo")
+print('apretar l para click derecho')
 while True:
     
     
